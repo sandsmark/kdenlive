@@ -597,8 +597,27 @@ Rectangle {
                     Text {
                         // Clip name text
                         id: label
-                        property string clipNameString: (clipRoot.isAudio && clipRoot.multiStream) ? ((clipRoot.audioStream > 10000 ? 'Merged' : clipRoot.aStreamIndex) + '|' + clipName ) : clipName
-                        text: (clipRoot.speed != 1.0 ? ('[' + Math.round(clipRoot.speed*100) + '%] ') : '') + clipNameString
+                        property string clipNameString: {
+                            if (clipRoot.isAudio && clipRoot.multiStream) {
+                                var prefix;
+                                if (clipRoot.audioStream > 10000) {
+                                    prefix = 'Merged';
+                                } else {
+                                    prefix = clipRoot.aStreamIndex;
+                                }
+                                return prefix + '|' + clipName;
+                            } else {
+                                return clipName;
+                            }
+                        }
+
+                        text: {
+                            if (clipRoot.speed != 1.0) {
+                                return '[' + Math.round(clipRoot.speed*100) + '%] ' + clipNameString;
+                            } else {
+                                return clipNameString;
+                            }
+                        }
                         font: miniFont
                         anchors {
                             top: labelRect.top
