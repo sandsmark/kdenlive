@@ -590,6 +590,11 @@ bool TimelineController::showMarkers() const
     return KdenliveSettings::showmarkers();
 }
 
+bool TimelineController::showClipNames() const
+{
+    return KdenliveSettings::showclipnames();
+}
+
 bool TimelineController::audioThumbFormat() const
 {
     return KdenliveSettings::displayallchannels();

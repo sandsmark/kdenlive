@@ -307,6 +307,11 @@
       <default>true</default>
     </entry>
 
+    <entry name="showclipnames" type="Bool">
+      <label>Display clip names in timeline.</label>
+      <default>true</default>
+    </entry>
+
     <entry name="autoscroll" type="Bool">
       <label>Auto scroll timeline while playing.</label>
       <default>true</default>

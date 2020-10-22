@@ -598,6 +598,9 @@ Rectangle {
                         // Clip name text
                         id: label
                         property string clipNameString: {
+                            if (!timeline.showClipNames) {
+                                return "";
+                            }
                             if (clipRoot.isAudio && clipRoot.multiStream) {
                                 var prefix;
                                 if (clipRoot.audioStream > 10000) {
@@ -612,6 +615,9 @@ Rectangle {
                         }
 
                         text: {
+                            if (!timeline.showClipNames) {
+                                return "";
+                            }
                             if (clipRoot.speed != 1.0) {
                                 return '[' + Math.round(clipRoot.speed*100) + '%] ' + clipNameString;
                             } else {

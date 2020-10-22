@@ -57,6 +57,7 @@ class TimelineController : public QObject
     Q_PROPERTY(bool showThumbnails READ showThumbnails NOTIFY showThumbnailsChanged)
     Q_PROPERTY(bool showMarkers READ showMarkers NOTIFY showMarkersChanged)
     Q_PROPERTY(bool showAudioThumbnails READ showAudioThumbnails NOTIFY showAudioThumbnailsChanged)
+    Q_PROPERTY(bool showClipNames READ showClipNames NOTIFY showClipNamesChanged)
     Q_PROPERTY(QVariantList dirtyChunks READ dirtyChunks NOTIFY dirtyChunksChanged)
     Q_PROPERTY(QVariantList renderedChunks READ renderedChunks NOTIFY renderedChunksChanged)
     Q_PROPERTY(int workingPreview READ workingPreview NOTIFY workingPreviewChanged)
@@ -251,6 +252,7 @@ public:
     bool showThumbnails() const;
     bool showAudioThumbnails() const;
     bool showMarkers() const;
+    bool showClipNames() const;
     bool audioThumbFormat() const;
     bool audioThumbNormalize() const;
     /* @brief Do we want to display audio thumbnails
@@ -651,6 +653,7 @@ signals:
     void colorsChanged();
     void showThumbnailsChanged();
     void showAudioThumbnailsChanged();
+    void showClipNamesChanged();
     void showMarkersChanged();
     void rippleChanged();
     void scrubChanged();

@@ -1189,6 +1189,12 @@ void MainWindow::setupActions()
     m_buttonShowMarkers->setChecked(KdenliveSettings::showmarkers());
     connect(m_buttonShowMarkers, &QAction::triggered, this, &MainWindow::slotSwitchMarkersComments);
 
+    m_buttonShowClipNames = new QAction(QIcon::fromTheme(QStringLiteral("kdenlive-show-clipnames")), i18n("Show clip names comments"), this);
+
+    m_buttonShowClipNames->setCheckable(true);
+    m_buttonShowClipNames->setChecked(KdenliveSettings::showclipnames());
+    connect(m_buttonShowClipNames, &QAction::triggered, this, &MainWindow::slotSwitchShowClipNames);
+
     m_buttonSnap = new QAction(QIcon::fromTheme(QStringLiteral("kdenlive-snap")), i18n("Snap"), this);
 
     m_buttonSnap->setCheckable(true);
@@ -1244,6 +1250,7 @@ void MainWindow::setupActions()
     toolbar->addAction(m_buttonVideoThumbs);
     toolbar->addAction(m_buttonAudioThumbs);
     toolbar->addAction(m_buttonShowMarkers);
+    toolbar->addAction(m_buttonShowClipNames);
     toolbar->addAction(m_buttonSnap);
     toolbar->addSeparator();
     toolbar->addAction(m_buttonFitZoom);
@@ -1277,6 +1284,7 @@ void MainWindow::setupActions()
     addAction(QStringLiteral("show_video_thumbs"), m_buttonVideoThumbs);
     addAction(QStringLiteral("show_audio_thumbs"), m_buttonAudioThumbs);
     addAction(QStringLiteral("show_markers"), m_buttonShowMarkers);
+    addAction(QStringLiteral("show_clip_names"), m_buttonShowClipNames);
     addAction(QStringLiteral("snap"), m_buttonSnap);
     addAction(QStringLiteral("zoom_fit"), m_buttonFitZoom);
 
@@ -2418,6 +2426,7 @@ void MainWindow::updateConfiguration()
     m_buttonAudioThumbs->setChecked(KdenliveSettings::audiothumbnails());
     m_buttonVideoThumbs->setChecked(KdenliveSettings::videothumbnails());
     m_buttonShowMarkers->setChecked(KdenliveSettings::showmarkers());
+    m_buttonShowClipNames->setChecked(KdenliveSettings::showclipnames());
     slotSwitchAutomaticTransition();
 
     // Update list of transcoding profiles
@@ -2445,6 +2454,13 @@ void MainWindow::slotSwitchMarkersComments()
     KdenliveSettings::setShowmarkers(!KdenliveSettings::showmarkers());
     emit getMainTimeline()->controller()->showMarkersChanged();
     m_buttonShowMarkers->setChecked(KdenliveSettings::showmarkers());
+}
+
+void MainWindow::slotSwitchShowClipNames()
+{
+    KdenliveSettings::setShowclipnames(!KdenliveSettings::showclipnames());
+    emit getMainTimeline()->controller()->showClipNamesChanged();
+    m_buttonShowClipNames->setChecked(KdenliveSettings::showclipnames());
 }
 
 void MainWindow::slotSwitchSnap()
